@@ -7,8 +7,8 @@ from __future__ import print_function
 import os
 import sys
 import re
-from tensorflow.python.util import nest
-from tensorflow.python.util.tf_export import keras_export
+from tensorflow import nest
+from tensorflow.keras import export
 
 
 try:
@@ -41,7 +41,7 @@ def check_pydot():
 
 def is_wrapped_model(layer):
   from tensorflow.python.keras.engine import network
-  from tensorflow.python.keras.layers import wrappers
+  from tensorflow.keras.layers import wrappers
   return (isinstance(layer, wrappers.Wrapper) and
           isinstance(layer.layer, network.Network))
 
@@ -86,8 +86,8 @@ def model_to_dot(model,
   Raises:
     ImportError: if graphviz or pydot are not available.
   """
-  from tensorflow.python.keras.layers import wrappers
-  from tensorflow.python.keras.engine import sequential
+  from tensorflow.keras.layers import wrappers
+  from tensorflow.keras.models import sequential
   from tensorflow.python.keras.engine import network
 
   if not check_pydot():
